@@ -10,25 +10,25 @@ public class TodoMatrix{
 
     }
 
-    private String getQuarter(String status){
+    public String getQuarter(String status){
         //Returns a choosen object drom map. Status should be foreach(IU,IN,NU,NN)
         return "";
     }
 
-    private void addItem(String title, LocalDate deadline){
+    public void addItem(String title, LocalDate deadline){
         //Add new item to map
     }
 
-    private void addItem(String title, LocalDate deadline, boolean isImportant){
+    public void addItem(String title, LocalDate deadline, boolean isImportant){
         //Add new item to map
     }
 
-    private void addItemsFromFile(String filename){
+    public void addItemsFromFile(String filename){
         //Add items from file to map by format:
         // title|day-month|is_important
     }
 
-    private void saveItemFromFile(String filename){
+    public void saveItemFromFile(String filename){
         //Add items from mat to file by format:
         // title|day-month|is_important
     }

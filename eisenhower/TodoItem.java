@@ -10,20 +10,20 @@ public class TodoItem{
 
     }
 
-    private String getTitle(){
+    public String getTitle(){
         //This method must be return title String
         return title;
     }
 
-    private LocalDate getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    private void mark(){
+    public void mark(){
         isDone = true;
     }
 
-    private void unmark(){
+    public void unmark(){
         isDone = false;
     }
 

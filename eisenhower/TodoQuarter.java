@@ -10,24 +10,24 @@ public class TodoQuarter{
 
     }
 
-    private void addItem(String title, LocalDate deadLine){
+    public void addItem(String title, LocalDate deadLine){
         //Append new item to List
     }
 
-    private void removeItem(int index){
+    public void removeItem(int index){
         //Remove object with index from list
     }
 
-    private void archiveItems(){
+    public void archiveItems(){
         //Remove all object with parametr isDone == true from list
     }
 
-    private String getItem(int index){
+    public String getItem(int index){
         String object = "";
         return object;
     }
 
-    private List<String> getItems(){ 
+    public List<String> getItems(){ 
         //Return private field todoItems - It's uncertain
         return toDoItems;
     }

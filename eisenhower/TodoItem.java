@@ -27,6 +27,10 @@ public class TodoItem{
         isDone = false;
     }
 
+    public boolean isDone(){
+        return true;
+    }
+
     public String toString(){
         String forString = "";
         return forString;

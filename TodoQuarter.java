@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class TodoQuarter{
-    ArrayList<TodoItem> todoItems = new ArrayList<TodoItem>();
+    private ArrayList<TodoItem> todoItems = new ArrayList<TodoItem>();
 
     TodoQuarter(){
 

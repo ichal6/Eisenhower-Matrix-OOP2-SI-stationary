@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TodoMatrix{
-    HashMap<String, TodoQuarter> todoQuarters = new HashMap<String, TodoQuarter>();
+    private HashMap<String, TodoQuarter> todoQuarters = new HashMap<String, TodoQuarter>();
 
     TodoMatrix(){
 

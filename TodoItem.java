@@ -1,8 +1,8 @@
 import java.time.LocalDate;
 public class TodoItem{
-    String title;
-    LocalDate deadline;
-    boolean isDone = false;
+    private String title;
+    private LocalDate deadline;
+    private boolean isDone = false;
 
     TodoItem(String title, LocalDate deadline){
 

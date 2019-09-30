@@ -297,7 +297,7 @@ You will need to download jar file from: https://mvnrepository.com/artifact/org.
 You can try with the latest version. Put this file to `lib` directory in your project and then you will be able to run the test suite,
 e.g. (adjust for your version number):
 
-`java -jar lib/junit-platform-console-standalone-1.1.0-M1.jar -cp . --scan-classpath`
+`java -jar lib/junit-platform-console-standalone-1.5.2.jar -cp . --scan-classpath`
 
 Of course, you need to compile the *Tests.java files first. This will handle _all_ java source files:
 `javac -cp lib/\*:. *.java`

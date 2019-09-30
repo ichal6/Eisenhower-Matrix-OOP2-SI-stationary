@@ -2,6 +2,7 @@ package eisenhower;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 public class TodoQuarter{
     ArrayList<String> toDoItems = new ArrayList<String>();
 
@@ -26,8 +27,9 @@ public class TodoQuarter{
         return object;
     }
 
-    private void/*uncertain return type */ getItems(){ 
+    private List<String> getItems(){ 
         //Return private field todoItems - It's uncertain
+        return toDoItems;
     }
 
     public String toString(){

@@ -1,11 +1,15 @@
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Map;
 
 public class TodoMatrix{
-    HashMap<String, LocalDate> todoQuarters = new HashMap<String, LocalDate>();
+    HashMap<String, TodoQuarter> todoQuarters = new HashMap<String, TodoQuarter>();
 
     TodoMatrix(){
 
+    }
+    public Map<String, TodoQuarter> getQuarters(){
+        return todoQuarters;
     }
 
     public String getQuarter(String status){
@@ -26,12 +30,12 @@ public class TodoMatrix{
         // title|day-month|is_important
     }
 
-    public void saveItemFromFile(String filename){
+    public void saveItemsToFile(String filename){
         //Add items from mat to file by format:
         // title|day-month|is_important
     }
 
-    private void archiveItems(){
+    public void archiveItems(){
         //Removes all TodoItem object with parametr isDone from list todoItems
     }
 

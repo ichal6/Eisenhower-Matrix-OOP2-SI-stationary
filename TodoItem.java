@@ -1,5 +1,3 @@
-package eisenhower;
-
 import java.time.LocalDate;
 public class TodoItem{
     String title;

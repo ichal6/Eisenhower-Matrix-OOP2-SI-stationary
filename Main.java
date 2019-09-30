@@ -1,4 +1,3 @@
-package eisenhower;
 import java.util.Scanner;
 
 public class Main {

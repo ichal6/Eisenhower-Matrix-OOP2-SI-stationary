@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class TodoQuarter{
-    ArrayList<String> toDoItems = new ArrayList<String>();
+    ArrayList<TodoItem> todoItems = new ArrayList<TodoItem>();
 
     TodoQuarter(){
 
@@ -20,14 +20,14 @@ public class TodoQuarter{
         //Remove all object with parametr isDone == true from list
     }
 
-    public String getItem(int index){
-        String object = "";
+    public TodoItem getItem(int index){
+        TodoItem object = todoItems.get(index);
         return object;
     }
 
-    public List<String> getItems(){ 
+    public List<TodoItem> getItems(){ 
         //Return private field todoItems - It's uncertain
-        return toDoItems;
+        return todoItems;
     }
 
     public String toString(){

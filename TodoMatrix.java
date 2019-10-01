@@ -98,14 +98,14 @@ public class TodoMatrix{
         while(data_from_file.hasNextLine()) 
         {
             new_row = data_from_file.nextLine();
-            new_row = new_row.toUpperCase();
             String[] parts = new_row.split("\\|");
 
             title = parts[0]; //insert title
             date = parts[1]; //insert date as unforrmatng String
             
             String[] dayAndMonth = date.split("-");
-            deadline.of(2019, Integer.parseInt(dayAndMonth[1]), Integer.parseInt(dayAndMonth[0]));
+            deadline = deadline.of(2019, Integer.parseInt(dayAndMonth[1]), Integer.parseInt(dayAndMonth[0]));
+
             if(parts.length == 2){
                 isImportant = false;
             }
@@ -130,6 +130,43 @@ public class TodoMatrix{
         //Add items from mat to file by format:
         // title|day-month|is_important
         String dataToSave = "";
+        String unconvertData = "";
+        LocalDate date = LocalDate.now();
+        int dateMonth, dateDay;
+        String title = "";
+        String important = "";
+        for(Map.Entry<String, TodoQuarter> entry : todoQuarters.entrySet()){
+            unconvertData = entry.getValue().toString().toString();
+            if(unconvertData.equals("")){
+                continue;
+            }
+            if(entry.getKey().equals("IU") | entry.getKey().equals("IN")){
+                //System.out.println(unconvertData);
+                int length = entry.getValue().getItems().size();
+                for(int index = 0; index < length; index++){
+                    date = entry.getValue().getItem(index).getDeadline();
+                    dateMonth = date.getMonthValue();
+                    dateDay = date.getDayOfMonth();
+                    title = entry.getValue().getItem(index).getTitle();
+                    important = "important";
+                    dataToSave += String.format("%s|%d-%d|%s\n", title, dateMonth, dateDay, important);
+                }
+            }
+            else{
+                int length = entry.getValue().getItems().size();
+                for(int index = 0; index < length; index++){
+                    date = entry.getValue().getItem(index).getDeadline();
+                    dateMonth = date.getMonthValue();
+                    dateDay = date.getDayOfMonth();
+
+                    title = entry.getValue().getItem(index).getTitle();
+                    dataToSave += String.format("%s|%d-%d|\n", title, dateMonth, dateDay);
+                }
+
+            }
+           
+        }
+        
         try
         {
             FileWriter fileWriter = new FileWriter(filename);
@@ -156,6 +193,5 @@ public class TodoMatrix{
         String returnString = "";
         return returnString;
     }
-
 
 }

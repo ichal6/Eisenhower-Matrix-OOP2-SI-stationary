@@ -44,7 +44,13 @@ public class TodoQuarter{
 
     public String toString(){
         // Return formatted list to label 
-        String forString = "";
-        return forString;
+        String outputString = "";
+        String row = "";
+        for (int index = 1; index <= todoItems.size(); index++)
+        {
+            row = todoItems.get(index-1).toString();
+            outputString += String.format("%d. %s\n", index, row);
+        }
+        return outputString;
     }
 }

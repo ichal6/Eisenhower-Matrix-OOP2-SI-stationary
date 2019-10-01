@@ -61,6 +61,9 @@ public class TodoMatrix{
 
     public void archiveItems(){
         //Removes all TodoItem object with parametr isDone from list todoItems
+        for (TodoQuarter quarter: todoQuarters.values()){
+            quarter.archiveItems();
+        }
     }
 
     public String toString(){

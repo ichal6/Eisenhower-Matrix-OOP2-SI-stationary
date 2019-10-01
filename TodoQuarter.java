@@ -17,6 +17,7 @@ public class TodoQuarter{
 
     public void removeItem(int index){
         //Remove object with index from list
+        todoItems.remove(index);
     }
 
     public void archiveItems(){

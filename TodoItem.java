@@ -5,7 +5,8 @@ public class TodoItem{
     private boolean isDone = false;
 
     TodoItem(String title, LocalDate deadline){
-
+        this.title = title;
+        this.deadline = deadline;
     }
 
     public String getTitle(){

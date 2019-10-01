@@ -34,8 +34,6 @@ public class TodoItem{
         String outputString = "";
         int month = deadline.getMonthValue();
         int day = deadline.getDayOfMonth();
-        String title = this.title;
-        boolean isDone = this.isDone;
         if (isDone){
             outputString = String.format("[x] %d-%d %s", month, day, title);
         }

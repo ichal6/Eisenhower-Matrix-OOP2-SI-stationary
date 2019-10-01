@@ -27,7 +27,7 @@ public class TodoItem{
     }
 
     public boolean isDone(){
-        return true;
+        return isDone;
     }
 
     public String toString(){

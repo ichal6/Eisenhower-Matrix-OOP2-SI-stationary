@@ -22,6 +22,14 @@ public class TodoQuarter{
 
     public void archiveItems(){
         //Remove all object with parametr isDone == true from list
+        int arrayLength = todoItems.size();
+        for(int index = 0; index < arrayLength; index++){
+            TodoItem item = todoItems.get(index);
+            if(item.isDone()){
+                todoItems.remove(item);
+                arrayLength--;
+            }
+        }
     }
 
     public TodoItem getItem(int index){

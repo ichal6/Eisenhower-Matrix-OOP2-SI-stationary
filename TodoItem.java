@@ -31,7 +31,17 @@ public class TodoItem{
     }
 
     public String toString(){
-        String forString = "";
-        return forString;
+        String outputString = "";
+        int month = deadline.getMonthValue();
+        int day = deadline.getDayOfMonth();
+        String title = this.title;
+        boolean isDone = this.isDone;
+        if (isDone){
+            outputString = String.format("[x] %d-%d %s", month, day, title);
+        }
+        else{
+            outputString = String.format("[ ] %d-%d %s", month, day, title);
+        }
+        return outputString;
     }
 }

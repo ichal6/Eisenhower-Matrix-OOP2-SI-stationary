@@ -22,10 +22,31 @@ public class TodoMatrix{
 
     public void addItem(String title, LocalDate deadline){
         //Add new item to map
+        boolean isImportant = false;
+        addItem(title, deadline, isImportant);
     }
 
     public void addItem(String title, LocalDate deadline, boolean isImportant){
         //Add new item to map
+        LocalDate today = LocalDate.now();
+        deadline.toEpochDay();
+        long urgent = deadline.toEpochDay() - today.toEpochDay();
+        if (urgent <= 3){
+            if(isImportant){
+                todoQuarters.get("IU").addItem(title, deadline);
+            }
+            else{
+                todoQuarters.get("NU").addItem(title, deadline);
+            }
+        }
+        else{
+            if(isImportant){
+                todoQuarters.get("IN").addItem(title, deadline);
+            }
+            else{
+                todoQuarters.get("NN").addItem(title, deadline);
+            }
+        }
     }
 
     public void addItemsFromFile(String filename){

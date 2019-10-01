@@ -86,19 +86,17 @@ public class TodoMatrix{
         return data;
     }
 
-    private void ScannerToMatrix(Scanner data_from_file)
+    private void ScannerToMatrix(Scanner dataFromFile)
     {
-        String new_row = "";
-        String country, capitals;
+        String newRow = "";
         String title = "";
         String date = "";
-        String important = "";
         boolean isImportant;
         LocalDate deadline = LocalDate.now();
-        while(data_from_file.hasNextLine()) 
+        while(dataFromFile.hasNextLine()) 
         {
-            new_row = data_from_file.nextLine();
-            String[] parts = new_row.split("\\|");
+            newRow = dataFromFile.nextLine();
+            String[] parts = newRow.split("\\|");
 
             title = parts[0]; //insert title
             date = parts[1]; //insert date as unforrmatng String

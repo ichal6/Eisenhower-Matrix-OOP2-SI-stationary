@@ -1,6 +1,10 @@
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class TodoMatrix{
     private HashMap<String, TodoQuarter> todoQuarters = new HashMap<String, TodoQuarter>();
@@ -49,14 +53,95 @@ public class TodoMatrix{
         }
     }
 
+    private void saveToFile(String dataToSave, String filename)
+    {
+        try
+        {
+            FileWriter fileWriter = new FileWriter(filename);
+            fileWriter.write(dataToSave);
+            fileWriter.close();
+        }
+        catch ( IOException e) 
+        {
+            System.out.println("Sorry but I was unable to save your data file");
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+    private Scanner openFile(String filename)
+    {
+        Scanner data = null;
+
+        try 
+        {
+            data = new Scanner(new File(filename));
+        }
+        catch ( IOException e) 
+        {
+            System.out.println("Sorry but I was unable to open your data file");
+            e.printStackTrace();
+            System.exit(0);
+        }
+        return data;
+    }
+
+    private void ScannerToMatrix(Scanner data_from_file)
+    {
+        String new_row = "";
+        String country, capitals;
+        String title = "";
+        String date = "";
+        String important = "";
+        boolean isImportant;
+        LocalDate deadline = LocalDate.now();
+        while(data_from_file.hasNextLine()) 
+        {
+            new_row = data_from_file.nextLine();
+            new_row = new_row.toUpperCase();
+            String[] parts = new_row.split("\\|");
+
+            title = parts[0]; //insert title
+            date = parts[1]; //insert date as unforrmatng String
+            
+            String[] dayAndMonth = date.split("-");
+            deadline.of(2019, Integer.parseInt(dayAndMonth[1]), Integer.parseInt(dayAndMonth[0]));
+            if(parts.length == 2){
+                isImportant = false;
+            }
+            else{
+                isImportant = true;
+            }
+            addItem(title, deadline, isImportant);
+
+        }
+        //System.out.println(todoQuarters);
+    }
+
     public void addItemsFromFile(String filename){
         //Add items from file to map by format:
         // title|day-month|is_important
+        Scanner newScanner = openFile(filename);
+        ScannerToMatrix(newScanner);
+
     }
 
     public void saveItemsToFile(String filename){
         //Add items from mat to file by format:
         // title|day-month|is_important
+        String dataToSave = "";
+        try
+        {
+            FileWriter fileWriter = new FileWriter(filename);
+            fileWriter.write(dataToSave);
+            fileWriter.close();
+        }
+        catch ( IOException e) 
+        {
+            System.out.println("Sorry but I was unable to save your data file");
+            e.printStackTrace();
+            System.exit(0);
+        }
     }
 
     public void archiveItems(){

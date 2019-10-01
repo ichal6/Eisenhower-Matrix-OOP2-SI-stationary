@@ -10,6 +10,9 @@ public class TodoQuarter{
 
     public void addItem(String title, LocalDate deadLine){
         //Append new item to List
+        TodoItem newItem = new TodoItem(title, deadLine);
+        todoItems.add(newItem);
+        todoItems.sort(new DeadLine());
     }
 
     public void removeItem(int index){

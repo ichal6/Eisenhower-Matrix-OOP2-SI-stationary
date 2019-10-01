@@ -35,10 +35,10 @@ public class TodoItem{
         int month = deadline.getMonthValue();
         int day = deadline.getDayOfMonth();
         if (isDone){
-            outputString = String.format("[x] %d-%d %s", month, day, title);
+            outputString = String.format("[x] %d-%d %s", day, month, title);
         }
         else{
-            outputString = String.format("[ ] %d-%d %s", month, day, title);
+            outputString = String.format("[ ] %d-%d %s", day, month, title);
         }
         return outputString;
     }

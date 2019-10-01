@@ -165,18 +165,7 @@ public class TodoMatrix{
            
         }
         
-        try
-        {
-            FileWriter fileWriter = new FileWriter(filename);
-            fileWriter.write(dataToSave);
-            fileWriter.close();
-        }
-        catch ( IOException e) 
-        {
-            System.out.println("Sorry but I was unable to save your data file");
-            e.printStackTrace();
-            System.exit(0);
-        }
+        saveToFile(dataToSave, filename);
     }
 
     public void archiveItems(){

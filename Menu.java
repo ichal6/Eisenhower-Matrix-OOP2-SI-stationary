@@ -6,6 +6,7 @@ public class Menu {
     }
     public void displayMenu(){
         int numberOfOption = chooseOption();
+        switchOptions(numberOfOption);
     }
 
     private void displayOptions(){
@@ -23,6 +24,23 @@ public class Menu {
         switch(numberOfOption){
             case 1:
                 displayQuarter();
+                break;
+            case 2:
+                addItem();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 0:
                 break;
         }
     }
@@ -65,6 +83,46 @@ public class Menu {
                 break;
             default:
                 System.out.println("Wrong input!");
+        }
+    }
+
+    private void addItem(){
+        System.out.print("Please insert title item: ");
+        String title = inputUserData();
+        int monthAsInt;
+        boolean isNotCorrect = true;
+        while(isNotCorrect){
+            try{
+                System.out.print("Please insert month deadline: ");
+                String month = inputUserData();
+                monthAsInt = Integer.parseInt(month);
+                if (monthAsInt > 0 & monthAsInt < 13){
+                    isNotCorrect = false;
+                }
+                else{
+                    System.out.println("Please insert correct month!");
+                }
+            }
+            catch (Exception e){
+                System.out.println("Please insert correct month!");
+            }
+        }
+        isNotCorrect = true;
+        while(isNotCorrect){
+            try{
+                System.out.print("Please insert day deadline: ");
+                String day = inputUserData();
+                int dayAsInt = Integer.parseInt(day);
+                if (dayAsInt > 0 & dayAsInt < 32){
+                    isNotCorrect = false;
+                }
+                else{
+                    System.out.println("Please insert correct day!");
+                }
+            }
+            catch (Exception e){
+                System.out.println("Please insert correct day!");
+            }
         }
     }
 }

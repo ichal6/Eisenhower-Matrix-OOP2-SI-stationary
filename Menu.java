@@ -1,12 +1,21 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Menu {
+
+    private TodoMatrix matrix = new TodoMatrix();
+
     Menu(){
 
     }
+
     public void displayMenu(){
-        int numberOfOption = chooseOption();
-        switchOptions(numberOfOption);
+        boolean isRun = true;
+        while(isRun){
+            int numberOfOption = chooseOption();
+            isRun = switchOptions(numberOfOption);
+        }
+        
     }
 
     private void displayOptions(){
@@ -20,7 +29,7 @@ public class Menu {
         }
     }
 
-    private void switchOptions(int numberOfOption){
+    private boolean switchOptions(int numberOfOption){
         switch(numberOfOption){
             case 1:
                 displayQuarter();
@@ -41,8 +50,9 @@ public class Menu {
             case 8:
                 break;
             case 0:
-                break;
+                return false;
         }
+        return true;
     }
 
     private int chooseOption(){
@@ -89,7 +99,7 @@ public class Menu {
     private void addItem(){
         System.out.print("Please insert title item: ");
         String title = inputUserData();
-        int monthAsInt;
+        int monthAsInt = 1, dayAsInt = 1;
         boolean isNotCorrect = true;
         while(isNotCorrect){
             try{
@@ -112,7 +122,7 @@ public class Menu {
             try{
                 System.out.print("Please insert day deadline: ");
                 String day = inputUserData();
-                int dayAsInt = Integer.parseInt(day);
+                dayAsInt = Integer.parseInt(day);
                 if (dayAsInt > 0 & dayAsInt < 32){
                     isNotCorrect = false;
                 }
@@ -124,5 +134,11 @@ public class Menu {
                 System.out.println("Please insert correct day!");
             }
         }
+        LocalDate deadline = LocalDate.now();
+        int actualYear = deadline.getYear();
+        deadline = deadline.of(actualYear, monthAsInt, dayAsInt);
+
+        matrix.addItem(title, deadline);
+
     }
 }

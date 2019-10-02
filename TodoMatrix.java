@@ -93,6 +93,7 @@ public class TodoMatrix{
         String date = "";
         boolean isImportant;
         LocalDate deadline = LocalDate.now();
+        int actualYear = deadline.getYear();
         while(dataFromFile.hasNextLine()) 
         {
             newRow = dataFromFile.nextLine();
@@ -102,7 +103,9 @@ public class TodoMatrix{
             date = parts[1]; //insert date as unforrmatng String
             
             String[] dayAndMonth = date.split("-");
-            deadline = deadline.of(2019, Integer.parseInt(dayAndMonth[1]), Integer.parseInt(dayAndMonth[0]));
+            int month = Integer.parseInt(dayAndMonth[1]);
+            int day = Integer.parseInt(dayAndMonth[0]);
+            deadline = deadline.of(actualYear, month, day);
 
             if(parts.length == 2){
                 isImportant = false;
@@ -111,9 +114,7 @@ public class TodoMatrix{
                 isImportant = true;
             }
             addItem(title, deadline, isImportant);
-
         }
-        //System.out.println(todoQuarters);
     }
 
     public void addItemsFromFile(String filename){

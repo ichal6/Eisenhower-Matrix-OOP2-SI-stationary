@@ -69,7 +69,9 @@ public class Menu {
                 matrix.saveItemsToFile("todo_items_file.csv");
                 break;
             case 7:
-                break;
+                matrix.archiveItems();
+                matrix.saveItemsToFile("todo_items_file.csv");
+                return false;
             case 8:
                 break;
             case 0:

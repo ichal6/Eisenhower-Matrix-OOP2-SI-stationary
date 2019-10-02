@@ -5,7 +5,10 @@ public class Menu {
 
     }
     public void displayMenu(){
-        
+        int numberOfOption = chooseOption();
+    }
+
+    private void displayOptions(){
         String[] options =  {"1. Show quarter matrix", "2. Add item to matrix",
                             "3. Mark or unmark your tasks", "4. Remove items from matrix",
                             "5. Remove all done items", "6. Save to file items",
@@ -14,17 +17,13 @@ public class Menu {
         for(String option: options){
            System.out.println(option); 
         }
-        
-        int numberOfOption = chooseOption();
-        
-
-
     }
 
     private int chooseOption(){
         int numberOfOption = 0;
         boolean isInsert = true;
         while(isInsert){
+            displayOptions();
             System.out.println("Please choose option:");
             try{
                 numberOfOption = Integer.parseInt(inputUserData());

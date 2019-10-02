@@ -33,7 +33,6 @@ public class TodoMatrix{
     public void addItem(String title, LocalDate deadline, boolean isImportant){
         //Add new item to map
         LocalDate today = LocalDate.now();
-        deadline.toEpochDay();
         long urgent = deadline.toEpochDay() - today.toEpochDay();
         if (urgent <= 3){
             if(isImportant){

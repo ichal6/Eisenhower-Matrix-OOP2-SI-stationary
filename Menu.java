@@ -38,6 +38,18 @@ public class Menu {
                 addItem();
                 break;
             case 3:
+                String status = displayQuarter();
+                if(status.equals("emptyQuarter")){
+                    System.out.println("Quarter is empty!");
+                    break;
+                }
+                int indexItem = selectItem();
+                if( matrix.getQuarter(status).getItem(indexItem).isDone()){
+                    matrix.getQuarter(status).getItem(indexItem).unmark();
+                }
+                else{
+                    matrix.getQuarter(status).getItem(indexItem).mark();
+                }
                 break;
             case 4:
                 break;
@@ -79,7 +91,7 @@ public class Menu {
         return text;
     }
 
-    private void displayQuarter(){
+    private String displayQuarter(){
         System.out.println("Please choose which one quarter to display:[NN,IN,IU,NU]");
         String answer = inputUserData();
         switch(answer){
@@ -88,10 +100,16 @@ public class Menu {
             case "IU":
             case "NU":
                 System.out.println(matrix.getQuarter(answer).toString());
-                break;
+                String unconvertData = matrix.getQuarter(answer).toString().toString();
+                if(unconvertData.equals("")){
+                    return answer = "emptyQuarter";
+                }
+                return answer;
             default:
                 System.out.println("Wrong input!");
         }
+        
+        return answer = "emptyQuarter";
     }
 
     private void addItem(){
@@ -145,8 +163,20 @@ public class Menu {
         else{
             matrix.addItem(title, deadline);
         }
+    }
 
-        
-
+    private int selectItem(){
+        int index = 0;
+        boolean isNotCorrect = true;
+        while(isNotCorrect){
+            try{
+                System.out.print("Please select item by mark/unmark: ");
+                index = Integer.parseInt(inputUserData());
+                isNotCorrect = false;
+            }catch(Exception e){
+                System.out.println("Wrong input!");
+            }
+        }
+        return index - 1;
     }
 }

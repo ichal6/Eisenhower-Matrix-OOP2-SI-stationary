@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class TodoMatrix{
     private HashMap<String, TodoQuarter> todoQuarters = new HashMap<String, TodoQuarter>();
@@ -19,9 +20,14 @@ public class TodoMatrix{
         return todoQuarters;
     }
 
-    public String getQuarter(String status){
-        //Returns a choosen object drom map. Status should be foreach(IU,IN,NU,NN)
-        return "";
+    public TodoQuarter getQuarter(String status){
+        //Returns a choosen object from map. Status should be foreach(IU,IN,NU,NN)
+        for (String title: todoQuarters.keySet()){
+            if (title.equals(status)){
+                return todoQuarters.get(title);
+            }
+        }
+        return null;
     }
 
     public void addItem(String title, LocalDate deadline){

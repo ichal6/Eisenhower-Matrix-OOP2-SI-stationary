@@ -30,6 +30,8 @@ public class Menu {
     }
 
     private boolean switchOptions(int numberOfOption){
+        String status;
+        int indexItem;
         switch(numberOfOption){
             case 1:
                 displayQuarter();
@@ -38,12 +40,12 @@ public class Menu {
                 addItem();
                 break;
             case 3:
-                String status = displayQuarter();
+                status = displayQuarter();
                 if(status.equals("emptyQuarter")){
                     System.out.println("Quarter is empty!");
                     break;
                 }
-                int indexItem = selectItem();
+                indexItem = selectItem("Please select item by mark/unmark: ");
                 if( matrix.getQuarter(status).getItem(indexItem).isDone()){
                     matrix.getQuarter(status).getItem(indexItem).unmark();
                 }
@@ -52,6 +54,13 @@ public class Menu {
                 }
                 break;
             case 4:
+                status = displayQuarter();
+                if(status.equals("emptyQuarter")){
+                    System.out.println("Quarter is empty!");
+                    break;
+                }
+                indexItem = selectItem("Please select item by remove: ");
+                matrix.getQuarter(status).removeItem(indexItem);
                 break;
             case 5:
                 break;
@@ -165,12 +174,12 @@ public class Menu {
         }
     }
 
-    private int selectItem(){
+    private int selectItem(String order){
         int index = 0;
         boolean isNotCorrect = true;
         while(isNotCorrect){
             try{
-                System.out.print("Please select item by mark/unmark: ");
+                System.out.print(order);
                 index = Integer.parseInt(inputUserData());
                 isNotCorrect = false;
             }catch(Exception e){

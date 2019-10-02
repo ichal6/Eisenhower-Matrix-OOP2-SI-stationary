@@ -136,7 +136,17 @@ public class Menu {
         int actualYear = deadline.getYear();
         deadline = deadline.of(actualYear, monthAsInt, dayAsInt);
 
-        matrix.addItem(title, deadline);
+        System.out.print("Is your task important?:[y] ");
+        String answer = inputUserData();
+        if(answer.contains("y"))
+        {
+            matrix.addItem(title, deadline, true);
+        }
+        else{
+            matrix.addItem(title, deadline);
+        }
+
+        
 
     }
 }

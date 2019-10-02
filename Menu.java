@@ -19,6 +19,14 @@ public class Menu {
         }
     }
 
+    private void switchOptions(int numberOfOption){
+        switch(numberOfOption){
+            case 1:
+                displayQuarter();
+                break;
+        }
+    }
+
     private int chooseOption(){
         int numberOfOption = 0;
         boolean isInsert = true;
@@ -41,5 +49,22 @@ public class Menu {
         Scanner scanner = new Scanner(System.in);
         String text = scanner.nextLine();
         return text;
+    }
+
+    private void displayQuarter(){
+        System.out.println("Please choose which one quarter to display:[NN,IN,IU,NU]");
+        String answer = inputUserData();
+        switch(answer){
+            case "NN":
+                break;
+            case "IN":
+                break;
+            case "IU":
+                break;
+            case "NU":
+                break;
+            default:
+                System.out.println("Wrong input!");
+        }
     }
 }

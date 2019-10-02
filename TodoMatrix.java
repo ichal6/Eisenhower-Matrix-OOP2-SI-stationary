@@ -147,7 +147,7 @@ public class TodoMatrix{
                     dateDay = date.getDayOfMonth();
                     title = entry.getValue().getItem(index).getTitle();
                     important = "important";
-                    dataToSave += String.format("%s|%d-%d|%s\n", title, dateMonth, dateDay, important);
+                    dataToSave += String.format("%s|%d-%d|%s\n", title, dateDay, dateMonth, important);
                 }
             }
             else{
@@ -158,7 +158,7 @@ public class TodoMatrix{
                     dateDay = date.getDayOfMonth();
 
                     title = entry.getValue().getItem(index).getTitle();
-                    dataToSave += String.format("%s|%d-%d|\n", title, dateMonth, dateDay);
+                    dataToSave += String.format("%s|%d-%d|\n", title, dateDay, dateMonth);
                 }
 
             }

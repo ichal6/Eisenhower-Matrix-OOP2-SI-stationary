@@ -63,6 +63,7 @@ public class Menu {
                 matrix.getQuarter(status).removeItem(indexItem);
                 break;
             case 5:
+                matrix.archiveItems();
                 break;
             case 6:
                 break;

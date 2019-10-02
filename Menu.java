@@ -6,7 +6,7 @@ public class Menu {
     private TodoMatrix matrix = new TodoMatrix();
 
     Menu(){
-
+        matrix.addItemsFromFile("todo_items_read_test.csv");
     }
 
     public void displayMenu(){
@@ -84,12 +84,10 @@ public class Menu {
         String answer = inputUserData();
         switch(answer){
             case "NN":
-                break;
             case "IN":
-                break;
             case "IU":
-                break;
             case "NU":
+                System.out.println(matrix.getQuarter(answer).toString());
                 break;
             default:
                 System.out.println("Wrong input!");

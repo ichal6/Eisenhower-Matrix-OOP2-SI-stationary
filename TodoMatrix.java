@@ -129,43 +129,38 @@ public class TodoMatrix{
         // title|day-month|is_important
         String dataToSave = "";
         String unconvertData = "";
-        LocalDate date = LocalDate.now();
-        int dateMonth, dateDay;
-        String title = "";
-        String important = "";
         for(Map.Entry<String, TodoQuarter> entry : todoQuarters.entrySet()){
             unconvertData = entry.getValue().toString().toString();
             if(unconvertData.equals("")){
                 continue;
             }
+
             if(entry.getKey().equals("IU") | entry.getKey().equals("IN")){
-                //System.out.println(unconvertData);
-                int length = entry.getValue().getItems().size();
-                for(int index = 0; index < length; index++){
-                    date = entry.getValue().getItem(index).getDeadline();
-                    dateMonth = date.getMonthValue();
-                    dateDay = date.getDayOfMonth();
-                    title = entry.getValue().getItem(index).getTitle();
-                    important = "important";
-                    dataToSave += String.format("%s|%d-%d|%s\n", title, dateDay, dateMonth, important);
-                }
+                dataToSave += createStringToSave(entry, true);
             }
             else{
-                int length = entry.getValue().getItems().size();
-                for(int index = 0; index < length; index++){
-                    date = entry.getValue().getItem(index).getDeadline();
-                    dateMonth = date.getMonthValue();
-                    dateDay = date.getDayOfMonth();
-
-                    title = entry.getValue().getItem(index).getTitle();
-                    dataToSave += String.format("%s|%d-%d|\n", title, dateDay, dateMonth);
-                }
-
+                dataToSave += createStringToSave(entry, false);
             }
-           
-        }
-        
+        }       
         saveToFile(dataToSave, filename);
+    }
+
+    private String createStringToSave(Map.Entry<String, TodoQuarter> entry, boolean isImportant){
+        int length = entry.getValue().getItems().size();
+        LocalDate date = LocalDate.now();
+        String dataToSave = "";
+        String important = "";
+        if(isImportant){
+            important = "important";
+        }
+        for(int index = 0; index < length; index++){
+            date = entry.getValue().getItem(index).getDeadline();
+            int dateMonth = date.getMonthValue();
+            int dateDay = date.getDayOfMonth();
+            String title = entry.getValue().getItem(index).getTitle();
+            dataToSave += String.format("%s|%d-%d|%s\n", title, dateDay, dateMonth, important);
+        }
+        return dataToSave;
     }
 
     public void archiveItems(){

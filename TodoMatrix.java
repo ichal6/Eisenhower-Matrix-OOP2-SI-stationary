@@ -177,8 +177,14 @@ public class TodoMatrix{
 
     public String toString(){
         //Return a todoQuarters list formatted to string
-        String returnString = "";
-        return returnString;
+        String outputString = "";
+        String quarterAsString = "";
+        for (TodoQuarter quarter: todoQuarters.values())
+        {
+            quarterAsString += quarter.toString();
+            outputString += String.format("%s\n", quarter);
+        }
+        return outputString;
     }
 
 }

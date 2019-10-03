@@ -182,7 +182,7 @@ public class TodoMatrix{
         for (TodoQuarter quarter: todoQuarters.values())
         {
             quarterAsString += quarter.toString();
-            outputString += String.format("%s\n", quarter);
+            outputString += String.format("%s\n", quarterAsString);
         }
         return outputString;
     }

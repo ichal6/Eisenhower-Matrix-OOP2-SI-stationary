@@ -170,7 +170,14 @@ public class Menu {
         }
         LocalDate deadline = LocalDate.now();
         int actualYear = deadline.getYear();
-        deadline = deadline.of(actualYear, monthAsInt, dayAsInt);
+        try{
+            deadline = deadline.of(actualYear, monthAsInt, dayAsInt);
+        }
+        catch(Exception e){
+            System.out.println("Your insert incorrect day!");
+            return ;
+        }
+        
 
         System.out.print("Is your task important?:[y] ");
         String answer = inputUserData();
@@ -218,7 +225,7 @@ public class Menu {
         startRow = 16;
         status = "NN";
         label = insertQuarterInLabel(tabulation, startRow, status, label);
-        
+
         System.out.println(label);
     }
 

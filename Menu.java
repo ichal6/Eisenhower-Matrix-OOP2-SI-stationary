@@ -7,7 +7,7 @@ public class Menu {
     private Label array = new Label();
 
     Menu(){
-        matrix.addItemsFromFile("todo_items_read_test.csv");
+        matrix.addItemsFromFile("todo_items_file.csv");
     }
 
     public void displayMenu(){
@@ -33,7 +33,6 @@ public class Menu {
     private boolean switchOptions(int numberOfOption){
         String status;
         int indexItem;
-        StringBuffer label;
         switch(numberOfOption){
             case 1:
                 displayQuarter();

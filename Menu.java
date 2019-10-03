@@ -131,40 +131,8 @@ public class Menu {
         System.out.print("Please insert title item: ");
         String title = inputUserData();
         int monthAsInt = 1, dayAsInt = 1;
-        boolean isNotCorrect = true;
-        while(isNotCorrect){
-            try{
-                System.out.print("Please insert month deadline: ");
-                String month = inputUserData();
-                monthAsInt = Integer.parseInt(month);
-                if (monthAsInt > 0 & monthAsInt < 13){
-                    isNotCorrect = false;
-                }
-                else{
-                    System.out.println("Please insert correct month!");
-                }
-            }
-            catch (Exception e){
-                System.out.println("Please insert correct month!");
-            }
-        }
-        isNotCorrect = true;
-        while(isNotCorrect){
-            try{
-                System.out.print("Please insert day deadline: ");
-                String day = inputUserData();
-                dayAsInt = Integer.parseInt(day);
-                if (dayAsInt > 0 & dayAsInt < 32){
-                    isNotCorrect = false;
-                }
-                else{
-                    System.out.println("Please insert correct day!");
-                }
-            }
-            catch (Exception e){
-                System.out.println("Please insert correct day!");
-            }
-        }
+        monthAsInt = insertDayOrMonth(true, "month");
+        dayAsInt = insertDayOrMonth(false, "day");
         LocalDate deadline = LocalDate.now();
         int actualYear = deadline.getYear();
         try{
@@ -202,5 +170,34 @@ public class Menu {
         return index - 1;
     }
 
+    private int insertDayOrMonth(boolean isMonth, String title){
+        int monthOrDayAsInt = 1;
+        int maximumValue = 1;
+        boolean isNotCorrect = true;
+        if(isMonth)
+        {
+            maximumValue = 13;
+        }
+        else{
+            maximumValue = 32;
+        }
+        while(isNotCorrect){
+            try{
+                System.out.print(String.format("Please insert %s deadline: ", title));
+                String month = inputUserData();
+                monthOrDayAsInt = Integer.parseInt(month);
+                if (monthOrDayAsInt > 0 & monthOrDayAsInt < maximumValue){
+                    isNotCorrect = false;
+                }
+                else{
+                    System.out.println(String.format("Please insert correct %s!", title));
+                }
+            }
+            catch (Exception e){
+                System.out.println(String.format("Please insert correct %s!", title));
+            }
+        }
+        return monthOrDayAsInt;
+    }
 
 }

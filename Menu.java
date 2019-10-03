@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Menu {
 
     private TodoMatrix matrix = new TodoMatrix();
+    private Label array = new Label();
 
     Menu(){
         matrix.addItemsFromFile("todo_items_read_test.csv");
@@ -32,6 +33,7 @@ public class Menu {
     private boolean switchOptions(int numberOfOption){
         String status;
         int indexItem;
+        StringBuffer label;
         switch(numberOfOption){
             case 1:
                 displayQuarter();
@@ -73,6 +75,9 @@ public class Menu {
                 matrix.saveItemsToFile("todo_items_file.csv");
                 return false;
             case 8:
+                label = array.returnLabel();
+                insertDataToLabel(label);
+                //System.out.println(label);
                 break;
             case 0:
                 return false;
@@ -191,5 +196,60 @@ public class Menu {
             }
         }
         return index - 1;
+    }
+
+    private void insertDataToLabel(StringBuffer label){
+        
+        
+        int tab = 6;
+        int index = 2;
+        String output = "";
+        int maxWeidth = 31;
+        int rowLength = 72;
+        int lengthWord = 6;
+        for(TodoItem item :matrix.getQuarter("IU").getItems()){
+            output = item.toString();
+            lengthWord = output.length();
+            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
+            index++;
+        }
+        tab = 39;
+        index = 2;
+        for(TodoItem item :matrix.getQuarter("IN").getItems()){
+            output = item.toString();
+            lengthWord = output.length();
+            if(lengthWord > maxWeidth){
+                output = output.substring(0, maxWeidth);
+                lengthWord = maxWeidth;
+            }
+            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
+            index++;
+        }
+        tab = 6;
+        index = 16;
+        for(TodoItem item :matrix.getQuarter("NU").getItems()){
+            output = item.toString();
+            lengthWord = output.length();
+            if(lengthWord > maxWeidth){
+                output = output.substring(0, maxWeidth);
+                lengthWord = maxWeidth;
+            }
+            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
+            index++;
+        }
+
+        tab = 39;
+        index = 16;
+        for(TodoItem item :matrix.getQuarter("NN").getItems()){
+            output = item.toString();
+            lengthWord = output.length();
+            if(lengthWord > maxWeidth){
+                output = output.substring(0, maxWeidth);
+                lengthWord = maxWeidth;
+            }
+            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
+            index++;
+        }
+        System.out.println(label);
     }
 }

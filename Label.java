@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Label {
@@ -36,10 +35,54 @@ public class Label {
         return output;
     }
 
-    public StringBuffer returnLabel(){
+    public void displayLabel(TodoMatrix matrix){
         String labelAsString = importFile(openFile("draftLabel.txt"));
         StringBuffer labelAsBuffer = new StringBuffer(labelAsString);
         
-        return labelAsBuffer;
+        labelAsBuffer = insertDataToLabel(labelAsBuffer, matrix);
+
+        System.out.println(labelAsBuffer);
+    }
+
+    public StringBuffer insertDataToLabel(StringBuffer label, TodoMatrix matrix){
+        int tabulation = 6;
+        int startRow = 2;
+        String status = "IU";
+        label = insertQuarterInLabel(tabulation, startRow, status, label, matrix);
+
+        tabulation = 39;
+        startRow = 2;
+        status = "IN";
+        label = insertQuarterInLabel(tabulation, startRow, status, label, matrix);
+
+        tabulation = 6;
+        startRow = 16;
+        status = "NU";
+        label = insertQuarterInLabel(tabulation, startRow, status, label, matrix);
+
+        tabulation = 39;
+        startRow = 16;
+        status = "NN";
+        label = insertQuarterInLabel(tabulation, startRow, status, label, matrix);
+
+        return label;
+    }
+
+    private StringBuffer insertQuarterInLabel(int tab, int startRow, String status, StringBuffer label, TodoMatrix matrix){
+        String output = "";
+        int maxWeidth = 31;
+        int rowLength = 72;
+        int lengthWord = 0;
+        for(TodoItem item :matrix.getQuarter(status).getItems()){
+            output = item.toString();
+            lengthWord = output.length();
+            if(lengthWord > maxWeidth){
+                output = output.substring(0, maxWeidth);
+                lengthWord = maxWeidth;
+            }
+            label.replace((rowLength * startRow) + tab,(rowLength * startRow) + tab + lengthWord, output);
+            startRow++;
+        }
+        return label;
     }
 }

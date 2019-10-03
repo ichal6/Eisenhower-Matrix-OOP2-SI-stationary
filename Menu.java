@@ -75,9 +75,7 @@ public class Menu {
                 matrix.saveItemsToFile("todo_items_file.csv");
                 return false;
             case 8:
-                label = array.returnLabel();
-                insertDataToLabel(label);
-                //System.out.println(label);
+                array.displayLabel(matrix);
                 break;
             case 0:
                 return false;
@@ -205,45 +203,5 @@ public class Menu {
         return index - 1;
     }
 
-    private void insertDataToLabel(StringBuffer label){
-        int tabulation = 6;
-        int startRow = 2;
-        String status = "IU";
-        label = insertQuarterInLabel(tabulation, startRow, status, label);
 
-        tabulation = 39;
-        startRow = 2;
-        status = "IN";
-        label = insertQuarterInLabel(tabulation, startRow, status, label);
-
-        tabulation = 6;
-        startRow = 16;
-        status = "NU";
-        label = insertQuarterInLabel(tabulation, startRow, status, label);
-
-        tabulation = 39;
-        startRow = 16;
-        status = "NN";
-        label = insertQuarterInLabel(tabulation, startRow, status, label);
-
-        System.out.println(label);
-    }
-
-    private StringBuffer insertQuarterInLabel(int tab, int startRow, String status, StringBuffer label){
-        String output = "";
-        int maxWeidth = 31;
-        int rowLength = 72;
-        int lengthWord = 0;
-        for(TodoItem item :matrix.getQuarter(status).getItems()){
-            output = item.toString();
-            lengthWord = output.length();
-            if(lengthWord > maxWeidth){
-                output = output.substring(0, maxWeidth);
-                lengthWord = maxWeidth;
-            }
-            label.replace((rowLength * startRow) + tab,(rowLength * startRow) + tab + lengthWord, output);
-            startRow++;
-        }
-        return label;
-    }
 }

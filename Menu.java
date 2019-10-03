@@ -199,57 +199,44 @@ public class Menu {
     }
 
     private void insertDataToLabel(StringBuffer label){
+        int tabulation = 6;
+        int startRow = 2;
+        String status = "IU";
+        label = insertQuarterInLabel(tabulation, startRow, status, label);
+
+        tabulation = 39;
+        startRow = 2;
+        status = "IN";
+        label = insertQuarterInLabel(tabulation, startRow, status, label);
+
+        tabulation = 6;
+        startRow = 16;
+        status = "NU";
+        label = insertQuarterInLabel(tabulation, startRow, status, label);
+
+        tabulation = 39;
+        startRow = 16;
+        status = "NN";
+        label = insertQuarterInLabel(tabulation, startRow, status, label);
         
-        
-        int tab = 6;
-        int index = 2;
+        System.out.println(label);
+    }
+
+    private StringBuffer insertQuarterInLabel(int tab, int startRow, String status, StringBuffer label){
         String output = "";
         int maxWeidth = 31;
         int rowLength = 72;
-        int lengthWord = 6;
-        for(TodoItem item :matrix.getQuarter("IU").getItems()){
-            output = item.toString();
-            lengthWord = output.length();
-            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
-            index++;
-        }
-        tab = 39;
-        index = 2;
-        for(TodoItem item :matrix.getQuarter("IN").getItems()){
+        int lengthWord = 0;
+        for(TodoItem item :matrix.getQuarter(status).getItems()){
             output = item.toString();
             lengthWord = output.length();
             if(lengthWord > maxWeidth){
                 output = output.substring(0, maxWeidth);
                 lengthWord = maxWeidth;
             }
-            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
-            index++;
+            label.replace((rowLength * startRow) + tab,(rowLength * startRow) + tab + lengthWord, output);
+            startRow++;
         }
-        tab = 6;
-        index = 16;
-        for(TodoItem item :matrix.getQuarter("NU").getItems()){
-            output = item.toString();
-            lengthWord = output.length();
-            if(lengthWord > maxWeidth){
-                output = output.substring(0, maxWeidth);
-                lengthWord = maxWeidth;
-            }
-            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
-            index++;
-        }
-
-        tab = 39;
-        index = 16;
-        for(TodoItem item :matrix.getQuarter("NN").getItems()){
-            output = item.toString();
-            lengthWord = output.length();
-            if(lengthWord > maxWeidth){
-                output = output.substring(0, maxWeidth);
-                lengthWord = maxWeidth;
-            }
-            label.replace((rowLength * index) + tab,(rowLength * index) + tab + lengthWord, output);
-            index++;
-        }
-        System.out.println(label);
+        return label;
     }
 }

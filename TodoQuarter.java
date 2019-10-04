@@ -17,7 +17,12 @@ public class TodoQuarter{
 
     public void removeItem(int index){
         //Remove object with index from list
-        todoItems.remove(index);
+        try{
+            todoItems.remove(index);
+        }
+        catch(Exception e){
+            System.out.println("Wrong index! Nothing is erase.");
+        }
     }
 
     public void archiveItems(){

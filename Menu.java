@@ -31,8 +31,6 @@ public class Menu {
     }
 
     private boolean switchOptions(int numberOfOption){
-        String status;
-        int indexItem;
         switch(numberOfOption){
             case 1:
                 displayQuarter();
@@ -41,27 +39,10 @@ public class Menu {
                 addItem();
                 break;
             case 3:
-                status = displayQuarter();
-                if(status.equals("emptyQuarter")){
-                    System.out.println("Quarter is empty!");
-                    break;
-                }
-                indexItem = selectItem("Please select item by mark/unmark: ");
-                if( matrix.getQuarter(status).getItem(indexItem).isDone()){
-                    matrix.getQuarter(status).getItem(indexItem).unmark();
-                }
-                else{
-                    matrix.getQuarter(status).getItem(indexItem).mark();
-                }
+                markUnmarkItem();
                 break;
             case 4:
-                status = displayQuarter();
-                if(status.equals("emptyQuarter")){
-                    System.out.println("Quarter is empty!");
-                    break;
-                }
-                indexItem = selectItem("Please select item by remove: ");
-                matrix.getQuarter(status).removeItem(indexItem);
+                selectItemToRemove();
                 break;
             case 5:
                 matrix.archiveItems();
@@ -105,6 +86,37 @@ public class Menu {
         String text = scanner.nextLine();
         return text;
     }
+
+    private void selectItemToRemove(){
+        String status;
+        int indexItem;
+        status = displayQuarter();
+        if(status.equals("emptyQuarter")){
+            System.out.println("Quarter is empty!");
+            return ;
+        }
+        indexItem = selectItem("Please select item by remove: ");
+        matrix.getQuarter(status).removeItem(indexItem);
+    }
+
+
+    private void markUnmarkItem(){
+        String status;
+        int indexItem;
+        status = displayQuarter();
+                if(status.equals("emptyQuarter")){
+                    System.out.println("Quarter is empty!");
+                    return ;
+                }
+                indexItem = selectItem("Please select item by mark/unmark: ");
+                if( matrix.getQuarter(status).getItem(indexItem).isDone()){
+                    matrix.getQuarter(status).getItem(indexItem).unmark();
+                }
+                else{
+                    matrix.getQuarter(status).getItem(indexItem).mark();
+                }
+    }
+
 
     private String displayQuarter(){
         System.out.println("Please choose which one quarter to display:[NN,IN,IU,NU]");

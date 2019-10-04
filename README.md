@@ -119,7 +119,7 @@ Bob is a beginner Codecooler. He is a good self-learner, but he has a problem to
 ## The specification
 
 ### `Main.java`
-TODO
+Create object menuObject from class menu and launch method displayMenu()
 
 ### `TodoItem.java`
 
@@ -291,6 +291,127 @@ __Instance methods__
 
   Returns a todoQuarters list (an Eisenhower todoMatrix) formatted to string.
 
+* `saveToFile(String dataToSave, String filename)`
+
+  Save formated data dataToSave to file as name filename.
+
+* `openFile(String filename)`
+
+  Open file about name filename and return Scanner type.
+
+* `ScannerToMatrix(Scanner dataFromFile)`
+
+  Convert dataFromFile from type Scanner and save it to HashMap matrix.
+
+* `createStringToSave(Map.Entry<String, TodoQuarter> entry, boolean isImportant)`
+
+  Convert data from HashMap matrix to formatted String and return it.
+
+### `Label.java`
+### Class Label
+
+This class contain methods use for display formatting label
+
+__Instance methods__
+
+* ##### `Label()`
+  Construct label object.
+
+* `openFile(String filename)`
+
+  Open file about name filename and return Scanner type.
+
+* `importFile(Scanner dataFromFile)`
+
+  Import sheleton label and return it in type String.
+
+* `displayLabel(TodoMatrix matrix)`
+
+  Display label with TodoMatrix.
+
+* `insertDataToLabel(StringBuffer label, TodoMatrix matrix)`
+
+  Method insert quarter to label sheleton.
+
+* `insertQuarterInLabel(int tab, int startRow, String status, StringBuffer label, TodoMatrix matrix)`
+
+  Method insert TodoItems to label sheloton. Start of startRow row, tab as tabulation.
+
+
+### `Menu.java`
+### Class Menu
+
+This class contain methods use for display menu program
+
+
+__Attributes__
+
+* `matrix`
+
+  - data: TodoMatrix
+  - description: contains *TodoQuarter* objects
+
+    key: String - status of todoQuarter, value: TodoQuarter object
+
+        possible keys of TODO quarter:
+        - 'IU' means that todoQuarter contains important todoItems & urgent
+        - 'IN' means that todoQuarter contains important todoItems & not urgent
+        - 'NU' means that todoQuarter contains not important todoItems & urgent
+        - 'NN' means that todoQuarter contains not important & not urgent todoItems
+* `array`
+
+  - data: Label
+  - descripton: contains table of Eisenhower matrix
+
+
+__Instance methods__
+
+* ##### `Menu()`
+  Construct menu object. Import Items to Matrix Eisenhower from data file.
+
+* `displayMenu()`
+
+  Run menu program.
+
+* `private void displayOptions()`
+
+  Display Options programs for user.
+
+* `switchOptions(int numberOfOption)`
+
+  Launch option choosen by user.
+
+* `chooseOption()`
+
+  Method ask user about choosen option.
+
+* `inputUserData()`
+
+  Method to use insert data from user.
+
+* `selectItemToRemove()`
+
+  Methods use to select itemToRemove from matrix.
+
+* `markUnmarkItem()`
+
+  Methods use to mark or unmark item from quarter.
+
+* `displayQuarter()`
+
+  Methods use to display one of quarter. Method return answers user.
+
+* `addItem()`
+
+  Add item to matrixeisenhower.
+
+* `selectItem(String order)`
+
+  Return index of item.
+
+* `insertDayOrMonth(boolean isMonth, String title)`
+
+  Method use it insert day or month for addItem. Return value day or month as type int.
 
 ## Running tests
 You will need to download jar file from: https://mvnrepository.com/artifact/org.junit.platform/junit-platform-console-standalone

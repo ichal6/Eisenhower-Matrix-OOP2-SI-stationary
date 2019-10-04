@@ -38,7 +38,14 @@ public class TodoQuarter{
     }
 
     public TodoItem getItem(int index){
-        TodoItem object = todoItems.get(index);
+        TodoItem object;
+        try{
+            object = todoItems.get(index);
+        }
+        catch(Exception e){
+            System.out.println("Wrong index! Select first element in quarter.");
+            object = todoItems.get(0);
+        }
         return object;
     }
 
